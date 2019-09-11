@@ -10,10 +10,10 @@
 #Ansible Host
 #Ansible1 10.150.0.2
 routers:
-  cisco routers:
+  cisco:
     csr
     10.150.0.5
-  ansible routers:
+  arista:
     veos-router-1
     10.128.0.2
 linux hosts:
