@@ -1,4 +1,5 @@
 %YAML
+---
 
 #I have spun up an initial automation lab on the Google Cloud Platform purely for the experience. I will be spinning up an additional Local Virtual Lab soon for convenience. 
 
@@ -8,18 +9,17 @@
 
 #Ansible Host
 #Ansible1 10.150.0.2
-
-[CSR 1000V]
-csr
-10.150.0.5
-
-[Arista vEOS]
-veos-router-1
-10.128.0.2
-
-[Vagrant Host]
-virtualbox-host
-10.150.0.9
+routers:
+  cisco routers:
+    csr
+    10.150.0.5
+  ansible routers:
+    veos-router-1
+    10.128.0.2
+linux hosts:
+  vagrant:
+    virtualbox-host
+    10.150.0.9
 
 #Future GCP HOSTS
 #I will likely also spin up a PA NGFW TBD in the near future
