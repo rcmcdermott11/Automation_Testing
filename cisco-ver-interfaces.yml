@@ -1,0 +1,15 @@
+---
+- hosts: cisco
+  gather_facts: no
+  vars:
+  - results: results
+  tasks:
+  - file: path={{results}} state=directory
+    run_once: True
+  - name: run show version on remote devices
+    ios_command:
+      commands:
+        - show version
+        - show interfaces
+          #  register: result
+          #  - copy: content="{{result.ansible_facts|to_nice_yaml(indent=4)}}" dest=etc/ansible/{{results}}/{{inventory_hostname}}.yml
