@@ -1,31 +1,20 @@
-%YAML
+#Lab inventory
 ---
-
-#I have spun up an initial automation lab on the Google Cloud Platform purely for the experience. I will be spinning up an additional Local Virtual Lab soon for convenience. 
-
-#Lab Hosts
-
-#GCP HOSTS
-
-#Ansible Host
-#Ansible1 10.150.0.2
 routers:
-  cisco:
-    csr
-    10.150.0.5
-  arista:
-    veos-router-1
-    10.128.0.2
-linux hosts:
-  vagrant:
-    virtualbox-host
-    10.150.0.9
-
-#Future GCP HOSTS
-#I will likely also spin up a PA NGFW TBD in the near future
-
-#Future Local Virtual Hosts TBD (ubuntu host OS, Vagrant-boxes)
-#Juniper vSRX
-#Cumulus VX
-
-
+    children:
+        cisco:
+            hosts:
+                10.150.0.5
+            vars:
+                    ansible_user: xxx
+                    ansible_ssh_pass: xxx
+                    ansible_connection: network_cli
+                    ansible_network_os: ios
+        arista:
+            hosts:
+                 10.128.0.2
+            vars:
+                    ansible_user: xxx
+                    ansible_ssh_pass: xxx
+                    ansible_connection: network_cli
+                    ansible_network_os: eos
