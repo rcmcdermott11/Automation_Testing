@@ -1,0 +1,9 @@
+---
+- hosts: routers
+  gather_facts: no
+  tasks:
+  - ios_command:
+      commands: show arp
+    when: "'10.150' in inventory_hostname"
+    register: show
+  - debug: var=show.stdout_lines

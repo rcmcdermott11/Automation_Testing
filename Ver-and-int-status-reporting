@@ -1,0 +1,28 @@
+#This playbook checks the IOS XE version and interface status of a cisco device and saves them to separate files.
+---
+- hosts: cisco
+  gather_facts: no
+  vars:
+  - results: results
+  tasks:
+  - file: path={{results}} state=directory
+    run_once: False
+  - name: run show version on remote devices
+    ios_command:
+      commands:
+        - "show version | inc Cisco IOS XE"
+    register: result
+  - copy:
+          content:  |
+            {{result.stdout[0] }}
+          dest:  "etc/ansible/{{inventory_hostname}}_show_ver.txt"
+  - name: run show int on remote devices
+    ios_command:
+      commands:
+        - "show interfaces | inc up"
+    register: result1
+  - copy:
+          content:  |
+            {{result1.stdout[0] }}
+          dest:  "etc/ansible/{{inventory_hostname}}_show_inv.txt"
+
