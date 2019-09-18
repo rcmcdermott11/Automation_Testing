@@ -1,0 +1,8 @@
+---
+- hosts: cisco
+  tasks:
+    - name: Show VLAN
+      ios_command:
+        commands: show ip int brief
+      register: show_ip_int
+    - debug: var=show_ip_int.stdout_lines
