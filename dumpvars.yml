@@ -1,0 +1,10 @@
+#validate host variables
+---
+- name: dump variables for each host
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: display host variables
+      debug: var=hostvars
